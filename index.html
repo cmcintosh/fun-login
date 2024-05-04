@@ -92,13 +92,35 @@
             overflow: hidden;
         }
 
+        @keyframes animateText {
+            0% {
+                background: linear-gradient(to bottom, yellow, black, red, orange);
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+            50% {
+                background: linear-gradient(to bottom, orange,yellow,black,red);
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+            100% {
+                background: linear-gradient(to bottom, red,orange,yellow,black);
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+        }
+
         .gradient-text {
-            background: linear-gradient(to top, red, orange, yellow);
+            background: linear-gradient(to bottom, red,orange,yellow,black);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-family:impact;
             font-size: 24px;
+
+            animation-name: animateText;
+            animation-duration: .25s;
+            animation-iteration-count: infinite;
         }
 
         .faded {
