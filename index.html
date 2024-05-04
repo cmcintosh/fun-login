@@ -35,7 +35,9 @@
         </div>
         
         <div class="sun-wrapper">
-            <div class="sun"></div>
+            <div class="sun-radiance">
+                <div class="sun"></div>
+            </div>
         </div>
 
         <svg class="editorial"
@@ -65,10 +67,10 @@
     <style>
         body {
             background: #0B486B;
-            background: linear-gradient(
+            /* background: linear-gradient(
                 to bottom,
                 #0B486B,#F56217
-            );
+            ); */
             position: fixed;
             width:100%;
             height: 100%;
@@ -338,8 +340,8 @@
                 left: 100vw;
             }
             100% {
-                top: 5vh;
-                left: 5vw;
+                top: -98vh;
+                left: -98vw;
             }
          }
 
@@ -364,8 +366,21 @@
 
             animation-name: sunset;
             animation-duration: 12s;
-            top: 5vh;
-            left: 5vw;
+            top: -98vh;
+            left: -98vw;
+
+            
+         }
+
+         .sun-radiance {
+            position:relative;
+            background: rgb(238,244,18);
+            background: -moz-radial-gradient(circle, rgba(238,244,18,0.7) 0%, rgba(198,153,16,0.6) 32%, rgba(238,244,18,0.15) 66%, rgba(238,244,18,0) 77%, rgba(255,255,255,0) 87%);
+            background: -webkit-radial-gradient(circle, rgba(238,244,18,0.7) 0%, rgba(198,153,16,0.6) 32%, rgba(238,244,18,0.15) 66%, rgba(238,244,18,0) 77%, rgba(255,255,255,0) 87%);
+            background: radial-gradient(circle, rgba(238,244,18,0.7) 0%, rgba(198,153,16,0.6) 32%, rgba(238,244,18,0.15) 66%, rgba(238,244,18,0) 77%, rgba(255,255,255,0) 87%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eef412",endColorstr="#ffffff",GradientType=1);
+            width: 200vw;
+            height: 200vh;
          }
          
 
@@ -376,7 +391,9 @@
             display: block;
             background: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/the_sun2.png);
             background-size: cover;
-            position: relative;
+            position: absolute;
+            left: 50%;
+            top:50%;
             z-index: 99;
 
             transform: rotate(0deg);
