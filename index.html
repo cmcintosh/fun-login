@@ -8,8 +8,8 @@
             <div id="formContent">
                 <!-- Tabs Titles -->
                 <div class="tab-wrapper">
-                    <h2 class="active"> Sign In </h2>
-                    <h2 class="inactive underlineHover">Sign Up </h2>
+                    <h2 class="gradient-text"> Sign In </h2>
+                    <h2 class="underlineHover gradient-text faded">Join the Community</h2>
                 </div>
                 
             
@@ -30,6 +30,21 @@
                 <a class="underlineHover" href="#">Forgot Password?</a>
                 </div>
                 <div class="surfer"></div>
+
+                <!-- palm tree island -->
+                <div class="tree-wrapper">
+                    <div class="tree"></div>
+                </div>
+
+                <div class="social-wrapper">
+                    <a class="social github" href="https://github.com/cmcintosh" target="_blank">github.com/cmcintosh</a>
+                    <a class="social linkedin" href="https://www.linkedin.com/in/chrismcintoshwembassy/" target="_blank">linkedin.com/in/chrismcintoshwembassy/</a>
+                    <a class="social twitter" href="https://twitter.com/TeamWembassy">Wembassy</a>
+                    <a class="social youtube" href="https://www.youtube.com/@wembassy" target="_blank">@wembassy</a>
+                    <a class="social twitch" href="https://www.twitch.tv/cavemancrafting" target="_blank">@cavemancrafting</a>
+                    
+                </div>
+
             </div>
             
         </div>
@@ -83,8 +98,49 @@
             background-clip: text;
             color: transparent;
             font-family:impact;
-            font-size: 30px;
+            font-size: 24px;
         }
+
+        .faded {
+            opacity: 0.6;
+        }
+
+        /**
+         Social
+        */
+        .social-wrapper {
+            border: 1px solid black;
+            height: 48px;
+        }
+
+        .social {
+            width:16px;
+            height:16px;
+            text-indent:-9999px;
+            overflow: hidden;
+            background-size: cover;
+        }
+
+        .social.github {
+            background-image: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/icons8-github-64.png);
+        }
+
+        .social.linkedin {
+            background-image: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/icons8-linkedin.gif);
+        }
+
+        .social.twitter {
+            background-image: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/icons8-twitter-squared.gif);
+        }
+
+        .social.youtube {
+            background-image: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/icons8-youtube-64.png);
+        }
+
+        .social.twitch {
+            background-image: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/icons8-twitch-64.png);
+        }
+                    
 
         /*
          * surfer dude
@@ -401,6 +457,25 @@
             animation-duration: 5s;
             animation-iteration-count: infinite;
         }
+
+        /**
+         * Island palm tree.
+         */
+
+         .tree {
+            position: absolute;
+            top: 7px;
+            left: -270px;
+            width: 100%;
+            height: 100%;
+            background: url(https://78.media.tumblr.com/6fbf1edc445d7210e02d20e6e342287a/tumblr_ozop06XvsX1vq64mxo1_1280.png) 55% 5vmin no-repeat;
+            background-size: 70%;
+            filter:
+                brightness(0%)
+                blur(.5px);
+            transform: rotateY(180deg) rotateZ(9deg);
+        }
+        
 
         /**
          * Waves
