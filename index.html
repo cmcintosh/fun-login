@@ -332,13 +332,40 @@
         /**
          * Sun
          */
+         @keyframes sunset {
+            0% {
+                top: 100vh;
+                left: 100vw;
+            }
+            100% {
+                top: 5vh;
+                left: 5vw;
+            }
+         }
+
+         @keyframes sunRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(15deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+         }
+
          .sun-wrapper {
-            position: fixed;
-            top: -46vh;
-            left: -950px;
-            width: 100vw;
-            height: 100vh;
+            position: absolute;
+            z-index: 99;
+            width: 500px;
+            height: 500px;
             z-index: 0;
+
+            animation-name: sunset;
+            animation-duration: 12s;
+            top: 5vh;
+            left: 5vw;
          }
          
 
@@ -349,10 +376,13 @@
             display: block;
             background: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/the_sun2.png);
             background-size: cover;
-            position: absolute;
-            left: 50vw;
-            top: 50vh;
+            position: relative;
             z-index: 99;
+
+            transform: rotate(0deg);
+            animation-name: sunRotate;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
         }
 
         /**
