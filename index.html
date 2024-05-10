@@ -2,7 +2,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <body>
+    <body id="stage">
         
         <div class="login wrapper fadeInDown">
             <div id="formContent">
@@ -29,7 +29,8 @@
                 <div id="formFooter">
                 <a class="underlineHover" href="#">Forgot Password?</a>
                 </div>
-                <div class="surfer"></div>
+                
+                <div id="surfer" class="surfer"></div>
 
                 <!-- palm tree island -->
                 <div class="tree-wrapper">
@@ -37,11 +38,11 @@
                 </div>
 
                 <div class="social-wrapper">
-                    <a class="social github" href="https://github.com/cmcintosh" target="_blank">github.com/cmcintosh</a>
-                    <a class="social linkedin" href="https://www.linkedin.com/in/chrismcintoshwembassy/" target="_blank">linkedin.com/in/chrismcintoshwembassy/</a>
-                    <a class="social youtube" href="https://www.youtube.com/@wembassy" target="_blank">@wembassy</a>
-                    <a class="social twitter" href="https://twitter.com/TeamWembassy">Wembassy</a>
-                    <a class="social twitch" href="https://www.twitch.tv/cavemancrafting" target="_blank">@cavemancrafting</a>
+                    <a id="github" class="social github" href="https://github.com/cmcintosh" target="_blank">github.com/cmcintosh</a>
+                    <a id="linkedin" class="social linkedin" href="https://www.linkedin.com/in/chrismcintoshwembassy/" target="_blank">linkedin.com/in/chrismcintoshwembassy/</a>
+                    <a id="youtube" class="social youtube" href="https://www.youtube.com/@wembassy" target="_blank">@wembassy</a>
+                    <a id="twitter" class="social twitter" href="https://twitter.com/TeamWembassy">Wembassy</a>
+                    <a id="twitch" class="social twitch" href="https://www.twitch.tv/cavemancrafting" target="_blank">@cavemancrafting</a>
                     
                 </div>
 
@@ -49,7 +50,7 @@
             
         </div>
         
-        <div class="sun-wrapper">
+        <div id="sun-wrapper" class="sun-wrapper">
             <div class="sun-radiance">
                 <div class="sun"></div>
             </div>
@@ -70,11 +71,13 @@
             v44h-352z" />
         </defs>
         <g class="parallax">
-        <use xlink:href="#gentle-wave" x="50" y="0" fill="#4579e2"/>
-        <use xlink:href="#gentle-wave" x="50" y="3" fill="#3461c1"/>
-        <use xlink:href="#gentle-wave" x="50" y="6" fill="#2d55aa"/>  
+            <use xlink:href="#gentle-wave" x="50" y="0" fill="#4579e2"/>
+            <use xlink:href="#gentle-wave" x="50" y="3" fill="#3461c1"/>
+            <use xlink:href="#gentle-wave" x="50" y="6" fill="#2d55aa"/>  
         </g>
         </svg>
+
+        <div class="marioBlock"></div>
 
     </body>
 
@@ -166,23 +169,6 @@
         .social.twitch {
             background-image: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/icons8-twitch-64.png);
         }
-                    
-
-        /*
-         * surfer dude
-         */
-        .surfer {
-            width: 152px;
-            height: 240px;
-            background: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/shirtdesign.png);
-            position: absolute;
-            z-index: 9;
-            left: -152px;
-            bottom: 10px;
-            display: block;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
 
         /**
          * Login form
@@ -248,58 +234,58 @@
         /* FORM TYPOGRAPHY*/
 
         input[type=button], input[type=submit], input[type=reset]  {
-        background-color: #56baed;
-        border: none;
-        color: white;
-        padding: 15px 80px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        text-transform: uppercase;
-        font-size: 13px;
-        -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-        box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-        -webkit-border-radius: 5px 5px 5px 5px;
-        border-radius: 5px 5px 5px 5px;
-        margin: 5px 20px 40px 20px;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -ms-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
+            background-color: #56baed;
+            border: none;
+            color: white;
+            padding: 15px 80px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 13px;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+            margin: 5px 20px 40px 20px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
         input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-        background-color: #39ace7;
+            background-color: #39ace7;
         }
 
         input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-        -moz-transform: scale(0.95);
-        -webkit-transform: scale(0.95);
-        -o-transform: scale(0.95);
-        -ms-transform: scale(0.95);
-        transform: scale(0.95);
+            -moz-transform: scale(0.95);
+            -webkit-transform: scale(0.95);
+            -o-transform: scale(0.95);
+            -ms-transform: scale(0.95);
+            transform: scale(0.95);
         }
 
         input[type=text] {
-        background-color: #f6f6f6;
-        border: none;
-        color: #0d0d0d;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 5px;
-        width: 85%;
-        border: 2px solid #f6f6f6;
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
-        -webkit-border-radius: 5px 5px 5px 5px;
-        border-radius: 5px 5px 5px 5px;
+            background-color: #f6f6f6;
+            border: none;
+            color: #0d0d0d;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            width: 85%;
+            border: 2px solid #f6f6f6;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
         }
 
         input[type=text]:focus {
@@ -354,18 +340,18 @@
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
         .fadeIn {
-        opacity:0;
-        -webkit-animation:fadeIn ease-in 1;
-        -moz-animation:fadeIn ease-in 1;
-        animation:fadeIn ease-in 1;
+            opacity:0;
+            -webkit-animation:fadeIn ease-in 1;
+            -moz-animation:fadeIn ease-in 1;
+            animation:fadeIn ease-in 1;
 
-        -webkit-animation-fill-mode:forwards;
-        -moz-animation-fill-mode:forwards;
-        animation-fill-mode:forwards;
+            -webkit-animation-fill-mode:forwards;
+            -moz-animation-fill-mode:forwards;
+            animation-fill-mode:forwards;
 
-        -webkit-animation-duration:1s;
-        -moz-animation-duration:1s;
-        animation-duration:1s;
+            -webkit-animation-duration:1s;
+            -moz-animation-duration:1s;
+            animation-duration:1s;
         }
 
         .fadeIn.first {
@@ -445,13 +431,13 @@
             width: 500px;
             height: 500px;
             z-index: 0;
+         }
 
+         .sun-wrapper.finishLine {
             animation-name: sunset;
-            animation-duration: 12s;
+            animation-duration: 8s;
             top: -98vh;
             left: -98vw;
-
-            
          }
 
          .sun-radiance {
@@ -477,12 +463,12 @@
             left: 50%;
             top:50%;
             z-index: 99;
-
             transform: rotate(0deg);
             animation-name: sunRotate;
             animation-duration: 5s;
             animation-iteration-count: infinite;
         }
+        
 
         /**
          * Island palm tree.
@@ -550,7 +536,359 @@
             }
         }
 
-        
+        /**
+         * Super Mario Fun!!!
+         */
+         #surfer {
+            transition: all 2.5s;
+            scale: 1;
+         }
+        .surfer {
+            width: 190px;
+            height: 240px;
+            background: url(https://raw.githubusercontent.com/cmcintosh/fun-login/master/img/shirtdesign.png);
+            position: fixed;
+            z-index: 9;
+            left: 32%;
+            bottom: 25%;
+            display: block;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+         #surfer.mario {
+            scale: .25;
+            left: 28%;
+            position: fixed;
+            bottom: 24%;
+         }
+
+         .marioLeft {
+            transform:rotateY(180deg);
+         }
+
+        .vine {
+            width: 75px;
+            height: 600px;
+            position: fixed;
+            left: 32%;
+            bottom: 0%;
+            background: url(img/vine.png);
+            display: block;
+            z-index: 2;
+            background-size: cover;
+            background-position: bottom center;
+            animation-name: vineGrowth;
+            animation-duration: 2.5s;
+        }
+
+        .marioBlock {
+            background-image:url(img/blocks.png);
+            background-position:left top;
+            background-size: cover;
+            width:25px;
+            height:25px;
+            display:block;
+            float:left;
+        }
+        .platformBlock {
+            background-position-x:25px;
+        }
+        .normalBlock {
+            background-position-x:50px;
+        }
+        .damagedBlock { 
+            background-position-x:-25px;
+        }
+        .coinBlock { 
+            background-position-x:-50px;
+        }
+        .usedCoinBlock { 
+            background-position-x:0px;
+        }
+
+        @keyframes vineGrowth {
+            0% { 
+                bottom:-600px;
+            } 
+            100% { 
+                bottom:0%;
+            } 
+        }
+
+        .social { opacity: 0; }
+
+        .githubSocialBlock {
+            position: fixed;
+            transition: left 5s;
+            left: 200%;
+            bottom: 14%;
+        }
+
+        .linkedinSocialBlock {
+            position: fixed;
+            transition: left 5s;
+            left: 202.75%;
+            bottom: 14%;
+        }
+
+        .socialYoutubeBlock {
+            position: fixed;
+            transition: left 5s;
+            left: 208.75%;
+            bottom: 14%;
+        }
+
+        .socialTwitterBlock {
+            position: fixed;
+            transition: left 5s;
+            left: 212.75%;
+            bottom: 14%;
+        }
+
+        .socialTwitchBlock {
+            position: fixed;
+            transition: left 5s;
+            left: 222.75%;
+            bottom: 14%;
+        }
+
+        .githubSocialBlock.show {
+            left: 45.5%;
+        }
+
+        .linkedinSocialBlock.show {
+            left: 48.25%;
+        }
+
+        .socialYoutubeBlock.show {
+            left: 50.75%;
+        }
+
+        .socialTwitterBlock.show {
+            left: 53.25%
+        }
+
+        .socialTwitchBlock.show {
+            left: 56.25%
+        }
+
+        .showSocialIcon {
+            transform: rotateY(360deg);
+        }
+
+
     </style>
+
+    <script>
+        var files = {
+            'soundtrack': 'audio/soundtrack.mp3',
+            'gameover': 'audio/smb_gameover.wav',
+            'powerup': 'audio/smb_powerup.wav',
+            'stage_clear': 'audio/smb_stage_clear.wav',
+            'vineGrow': 'audio/smb_vine.wav',
+            'jump': 'audio/smb_jump-small.wav',
+            'coin': 'audio/smb_coin.wav',
+            'worldClear': 'audio/smb_world_clear.wav'
+        }
+
+        function play(file, loop = false) {
+            try {
+                var audio = new Audio(file);
+                audio.loop = loop;
+                audio.play();
+                return audio;
+            } catch (e) {
+                console.log("audio error", e);
+            }
+            
+        }
+
+        // Detect user clicking on page.... need user interaction to start the magic!!!
+        var checkInteractionInterval = false;
+        var soundtrack = false;
+        // Setup our dom targets.
+        const bodyStage = document.getElementById("stage");
+        var vine = false;
+        var surfer = document.getElementById("surfer");
+        var githubIcon = document.getElementById("github");
+        var linkedInIcon = document.getElementById("linkedin");
+        var youtubeIcon = document.getElementById("youtube");
+        var twitterIcon = document.getElementById("twitter");
+        var twitchIcon = document.getElementById("twitch");
+        var sunRise = document.getElementById("sun-wrapper");
+        
+        var tryAndPlayLevel = function() {
+            if (navigator.userActivation.hasBeenActive) {
+                clearInterval(checkInteractionInterval);
+
+                soundtrack = play(files.soundtrack, true);
+                
+                var p1 = buildPlatform(window.innerWidth);
+                bodyStage.appendChild(p1);
+
+                // Grow vine....
+                var vine = document.createElement("div");
+                vine.classList.add("vine");
+                bodyStage.appendChild(vine);
+                play(files.vineGrow, false);
+
+                var socialGithubBlock = document.createElement("div");
+                    socialGithubBlock.classList.add("githubSocialBlock");
+                    socialGithubBlock.classList.add("marioBlock");
+                    socialGithubBlock.classList.add("coinBlock");
+                bodyStage.appendChild(socialGithubBlock);
+
+                var socialLinkedinBlock = document.createElement("div");
+                    socialLinkedinBlock.classList.add("linkedinSocialBlock");
+                    socialLinkedinBlock.classList.add("marioBlock");
+                    socialLinkedinBlock.classList.add("coinBlock");
+                bodyStage.appendChild(socialLinkedinBlock);
+
+                var socialYoutubeBlock = document.createElement("div");
+                    socialYoutubeBlock.classList.add("socialYoutubeBlock");
+                    socialYoutubeBlock.classList.add("marioBlock");
+                    socialYoutubeBlock.classList.add("coinBlock");
+                bodyStage.appendChild(socialYoutubeBlock);
+
+                var socialTwitterBlock = document.createElement("div");
+                    socialTwitterBlock.classList.add("socialTwitterBlock");
+                    socialTwitterBlock.classList.add("marioBlock");
+                    socialTwitterBlock.classList.add("coinBlock");
+                bodyStage.appendChild(socialTwitterBlock);
+
+                var socialTwitchBlock = document.createElement("div");
+                    socialTwitchBlock.classList.add("socialTwitchBlock");
+                    socialTwitchBlock.classList.add("marioBlock");
+                    socialTwitchBlock.classList.add("coinBlock");
+                bodyStage.appendChild(socialTwitchBlock);
+
+                // Create the walking platforms....
+                surfer.classList.add("mario");
+                
+                // Animate guy down and start running
+                setTimeout(function(){
+                    p1.style["bottom"] = "5%";
+                    p1.style["left"] = "0%";
+                    socialGithubBlock.classList.add("show");
+                    socialLinkedinBlock.classList.add("show");
+                    socialYoutubeBlock.classList.add("show");
+                    socialTwitterBlock.classList.add("show");
+                    socialTwitchBlock.classList.add("show");
+                }, 2000);
+
+                setTimeout(function(){ 
+                    surfer.style["bottom"] = "3%";
+                    surfer.classList.add("marioLeft");
+                }, 2250);
+
+                setTimeout(function(){ 
+                    surfer.style["transition"] = "all 7.5s;"
+                    surfer.style["left"] = "33%";
+                    surfer.classList.add("marioLeft");
+                }, 3550);
+
+                setTimeout(function(){ 
+                    surfer.style["left"] = "40%";
+                    surfer.classList.add("marioLeft");
+                }, 4550);
+
+                setTimeout(function(){ 
+                    jumpAnimation();
+                    hitCoinBlock(socialGithubBlock, githubIcon);
+                }, 6550);
+                
+                setTimeout(function(){
+                    surfer.style["left"] = "42.25%";
+                }, 7550);
+
+                setTimeout(function(){
+                    jumpAnimation();
+                    hitCoinBlock(socialLinkedinBlock, linkedInIcon);
+                }, 8050);
+                
+                setTimeout(function(){
+                    surfer.style["left"] = "45%";
+                }, 8750);
+
+                setTimeout(function(){
+                    jumpAnimation();
+                    hitCoinBlock(socialYoutubeBlock, youtubeIcon);
+                }, 9250);
+
+                setTimeout(function(){
+                    surfer.style["left"] = "48%";
+                }, 9750);
+
+                setTimeout(function(){
+                    jumpAnimation();
+                    hitCoinBlock(socialTwitterBlock, twitterIcon);
+                }, 10250);
+
+                setTimeout(function(){
+                    surfer.style["left"] = "50%";
+                }, 12250);
+
+                setTimeout(function(){
+                    jumpAnimation();
+                    hitCoinBlock(socialTwitchBlock, twitchIcon);
+
+                    soundtrack.pause();
+
+                    sunRise.classList.add("finishLine");
+                    play(files.worldClear);
+                }, 13250);
+
+                setTimeout(function(){
+                    soundtrack.pause();
+                }, 15000);
+            }
+        }
+        
+        checkInteractionInterval = setInterval(tryAndPlayLevel, 500);
+
+        var buildPlatform = function(width, startX = "100%", startY = "-25%") {
+            var platform = document.createElement("div");
+            platform.style["width"] = width+10;
+            platform.style["transition"] = "all 2.5s";
+            platform.style["position"] = "fixed";
+            platform.style["left"] = startX;
+            platform.style["bottom"] = startY;
+
+            blocksToCreate = width / 25;
+            for(var i = 0; i < blocksToCreate; i++) {
+                console.log("Building block: " + i);
+                var block = document.createElement("div");
+                block.classList.add("marioBlock");
+                block.classList.add("platformBlock");
+                platform.appendChild(block);
+            }
+            return platform;
+        }
+
+        var jumpAnimation = function() {
+            setTimeout(function(){
+                surfer.style["bottom"] = "3%";
+            }, 700);
+
+            setTimeout(function(){
+                surfer.style["bottom"] = "7%";
+                play(files.jump, false);
+            }, 100);
+        }
+
+        var hitCoinBlock = function(block, rewardBlock) {
+            setTimeout(function(){
+                rewardBlock.classList.add("fadeIn");
+                rewardBlock.classList.add("showSocialIcon");
+            }, 200);
+
+            setTimeout(function(){
+                block.classList.add("usedCoinBlock");
+                play(files.coin);
+                block.classList.remove("coinBlock");
+            }, 100);
+        }
+
+    </script>
 
 </html>
