@@ -4,14 +4,53 @@
 
     <body>
 
+        <div id="moon"></div>
+        <div id="sun"></div>
+
+        <div class="offset-time">
+            <div id="offset-indicator"></div>
+        </div>
+
         <div class="timeline">
             <div class="indicator"></div>
         </div>
 
-        <div class="debugSeconds"></div>
+        <div class="debugWrapper">
+            <div class="debugSeconds"></div>
+            <div class="debugXtime">
+                <form>
+                    Speed up time:
+                    <span><label>1x</label> <input type="radio" id="speed-0"> </span>
+                    <span><label>4x</label> <input type="radio" id="speed-4"> </span>
+                    <span><label>8x</label> <input type="radio" id="speed-8"> </span>
+                    <span><label>16x</label> <input type="radio" id="speed-16"> </span>
+                </form>
+            </div>
+            <div id="debug-0" class="debugSetOne"></div>
+            <div id="debug-1" class="debugSetTwo"></div>
+            <div id="debug-2" class="debugSetThree"></div>
+
+        </div>
+        
+        <canvas id="canvas"></canvas>
 
         <style>
-            .timeline {
+            canvas { position : absolute; top : 0px; left : 0px; }
+            .debugWrapper {
+                position:fixed;
+                bottom:20px;
+                width: 100%;
+                height:20px;
+                padding: 0 20%;
+            }
+            .debugWrapper div {
+                float:left;
+                margin:0px 10px;
+                border: 1px solid;
+                padding: 2px;
+            }
+            .timeline,
+            .offset-time {
                 width: 90%;
                 height: 20px;
                 margin:10px auto;
@@ -21,7 +60,8 @@
                 position:relative;
             }
 
-            .indicator {
+            .indicator,
+            #offset-indicator {
                 width: 40px;
                 height:40px;
                 display:block;
@@ -35,6 +75,33 @@
             .debugSeconds {
                 float:left;
                 clear:both;
+            }
+
+            #sun, #moon {
+                width: 100px;
+                height: 100px;
+                display:block;
+                overflow:hidden;
+            }
+
+            #sun {
+                position:fixed;
+                transform:all;
+                left: 0%;
+                bottom:5%;
+                z-index:999;
+                background:url(./img/the_sun2.png);
+                background-size: cover;
+            }
+
+            #moon {
+                position:fixed;
+                transform:all;
+                left: 95%;
+                bottom:5%;
+                z-index:999;
+                background:url(./img/moon1.png);
+                background-size: cover;
             }
         </style>
 
@@ -60,7 +127,6 @@
                 document.getElementsByClassName('debugSeconds')[0].innerHTML = "Current Seconds spent today: " + currentSeconds; // Debug text.
                 document.getElementsByClassName('indicator')[0].style.left = currentPositions; // Update the left position, you could also do this calculation for the top position
             }
-
             
             // Initial position
             setAnimationPosition();
@@ -70,6 +136,124 @@
             setInterval(function(){
                 setAnimationPosition();
             }, 1000);
+
+            function fitCircleToPoints(x1, y1, x2, y2, x3, y3) {
+                var x, y, u;
+                const slopeA = (x2 - x1) / (y1 - y2); // slope of vector from point 1 to 2
+                const slopeB = (x3 - x2) / (y2 - y3); // slope of vector from point 2 to 3
+                if (slopeA === slopeB)  { return } // Slopes are same thus 3 points form striaght line. No circle can fit.
+                if (y1 === y2) {   // special case with points 1 and 2 have same y 
+                    x = ((x1 + x2) / 2);
+                    y = slopeB * x + (((y2 + y3) / 2) - slopeB * ((x2 + x3) / 2));  
+                } else if(y2 === y3) { // special case with points 2 and 3 have same y 
+                    x = ((x2 + x3) / 2);
+                    y = slopeA * x + (((y1 + y2) / 2) - slopeA * ((x1 + x2) / 2));  
+                } else {
+                    x = ((((y2 + y3) / 2) - slopeB * ((x2 + x3) / 2)) - (u = ((y1 + y2) / 2) - slopeA * ((x1 + x2) / 2))) / (slopeA - slopeB);
+                    y = slopeA * x + u;
+                }
+                
+                return {
+                    x, y, 
+                    radius: ((x1 - x) ** 2 + (y1 - y) ** 2) ** 0.5,
+                    CCW: ((x3 - x1) * (y2 - y1) - (y3 - y1) * (x2 - x1)) >= 0,
+                };
+            }
+
+
+            requestAnimationFrame(update);
+
+            Math.TAU = Math.PI * 2;
+            const ctx = canvas.getContext("2d");
+            const mouse  = {x : 0, y : 0, button : false}   
+            function mouseEvents(e){
+                const bounds = canvas.getBoundingClientRect();
+                mouse.x = e.pageX - bounds.left - scrollX;
+                mouse.y = e.pageY - bounds.top - scrollY;
+                mouse.button = e.type === "mousedown" ? true : e.type === "mouseup" ? false : mouse.button;
+            }
+            ["down","up","move"].forEach(name => document.addEventListener("mouse" + name, mouseEvents));
+            var w = canvas.width, h = canvas.height, cw = w / 2, ch = h / 2;
+            var nearest, ox, oy, dragging, dragIdx;
+            const points = [10,110,200,100,400,110];
+            function drawPoint(x, y, rad, col = "black") {
+                ctx.strokeStyle = col;
+                ctx.beginPath();
+                ctx.arc(x, y, rad, 0, Math.TAU);
+                ctx.stroke();
+            }
+            function drawLines(idx, col = "black") {
+                ctx.strokeStyle = col;
+                ctx.beginPath();
+                ctx.lineTo(points[idx++], points[idx++]);
+                ctx.lineTo(points[idx++], points[idx++]);
+                ctx.lineTo(points[idx++], points[idx++]);
+                ctx.stroke();
+            } 
+            function drawPoints() {
+            var i = 0, x, y;
+            nearest = - 1;
+            var minDist = 20;
+            while (i < points.length) {
+                drawPoint(x = points[i++], y = points[i++], 4);
+                const dist = (x - mouse.x) ** 2 + (y - mouse.y) ** 2;
+                if (dist < minDist) {
+                    minDist = dist;
+                    nearest = i - 2;
+                }
+            }
+            }
+
+            function update(){
+                ctx.setTransform(1,0,0,1,0,0); // reset transform
+                if (w !== innerWidth || h !== innerHeight) {
+                    cw = (w = canvas.width = innerWidth) / 2;
+                    ch = (h = canvas.height = innerHeight) / 2;
+                } else {
+                    ctx.clearRect(0,0,w,h);
+                }
+                canvas.style.cursor = "default";
+                drawPoints();
+                if (nearest > -1) {
+                if (mouse.button) {
+                    if (!dragging) {
+                        dragging = true;
+                        ox = points[nearest] - mouse.x;
+                        oy = points[nearest+1] - mouse.y;
+                        dragIdx = nearest;
+                    }
+                } else {
+                    canvas.style.cursor = "move";
+                }
+                drawPoint(points[nearest], points[nearest + 1], 6, "red")
+                }
+                if (dragging) {
+                    if (!mouse.button) {
+                        dragging = false;
+                    } else {
+                        points[dragIdx] = mouse.x + ox;
+                        points[dragIdx + 1] = mouse.y + oy
+                        canvas.style.cursor = "none";
+                    }
+
+                    for(var i = 0; i < 3; i++) {
+                        var target = "debug-" + i;
+                        document.getElementById(target).innerHTML = points[(i * 2)] + ", " + points[(i * 2)+1];
+                    }
+                }
+                
+                drawLines(0, "#0002");
+                const circle = fitCircleToPoints(points[0], points[1], points[2], points[3], points[4], points[5]);
+                if (circle) {
+                    ctx.strokeStyle = "#000";
+                    const ang1 = Math.atan2(points[1] - circle.y, points[0]- circle.x);
+                    const ang2 = Math.atan2(points[5] - circle.y, points[4]- circle.x);
+                    ctx.beginPath();
+                    ctx.arc(circle.x, circle.y, circle.radius, ang1, ang2, circle.CCW);
+                    ctx.stroke();
+                }
+                requestAnimationFrame(update);
+            }
 
         </script>
 
